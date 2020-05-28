@@ -44,12 +44,12 @@ extension JTACMonthView: UIScrollViewDelegate {
             theCurrentContentOffset = scrollView.contentOffset.x
             theTargetContentOffset = targetContentOffset.pointee.x
             directionVelocity = velocity.x
-            maxContentOffset = scrollView.contentSize.width - scrollView.frame.width
+            maxContentOffset = scrollView.contentSize.width
         } else {
             theCurrentContentOffset = scrollView.contentOffset.y
             theTargetContentOffset = targetContentOffset.pointee.y
             directionVelocity = velocity.y
-            maxContentOffset = scrollView.contentSize.height - scrollView.frame.height
+            maxContentOffset = scrollView.contentSize.height
         }
 
         let gestureTranslation = self.panGestureRecognizer.translation(in: self)
