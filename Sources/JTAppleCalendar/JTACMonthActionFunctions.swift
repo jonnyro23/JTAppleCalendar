@@ -111,6 +111,8 @@ extension JTACMonthView {
         if let validCompletionHandler = completionHandler { scrollDelayedExecutionClosure.append(validCompletionHandler) }
         self.triggerScrollToDateDelegate = triggerScrollToDateDelegate
         var point = point
+        let maxYCalendarOffset = max(0, self.contentSize.height - self.frame.size.height + contentInset.bottom)
+        point = CGPoint(x: point.x - sectionInset.left, y: min(maxYCalendarOffset, point.y))
         if scrollDirection == .horizontal { point.x += extraAddedOffset } else { point.y += extraAddedOffset }
         DispatchQueue.main.async() {
             self.setContentOffset(point, animated: isAnimationEnabled)
