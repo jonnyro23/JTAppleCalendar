@@ -57,7 +57,7 @@ extension JTACMonthView {
         switch scrollingMode {
         case let .stopAtEach(customInterval: x): fixedScrollSize = x
         case let .nonStopTo(customInterval: x, withResistance: _): fixedScrollSize = x
-        case .stopAtEachCalendarFrame: fixedScrollSize = scrollDirection == .horizontal ? self.frame.width : self.frame.height
+        case .stopAtEachCalendarFrame, .none: fixedScrollSize = scrollDirection == .horizontal ? self.frame.width : self.frame.height
         default: break
         }
 
@@ -87,6 +87,13 @@ extension JTACMonthView {
                     guard let validSectionHeaderData = calendarViewLayout.headerCache[section] else { return nil }
                     y = validSectionHeaderData.3 - sectionInset.top
                 }
+            }
+        case .none:
+            switch preferredScrollPosition {
+            case UICollectionView.ScrollPosition.top: break
+            case UICollectionView.ScrollPosition.bottom:
+                y = theTargetContentOffset - fixedScrollSize + contentInset.bottom + targetCellFrame.size.height
+            default: break
             }
         default: break
         }

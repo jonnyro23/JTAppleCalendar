@@ -547,7 +547,7 @@ extension JTACMonthView {
         if retrievedPathsFromDates.isEmpty { return }
         let sectionIndexPath = pathsFromDates([date])[0]
         
-        guard let point = targetPointForItemAt(indexPath: sectionIndexPath) else {
+        guard let point = targetPointForItemAt(indexPath: sectionIndexPath, preferredScrollPosition: preferredScrollPosition) else {
             assert(false, "Could not determine CGPoint. This is an error. contact developer on github. In production, there will not be a crash, but scrolling will not occur")
             return
         }
